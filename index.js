@@ -5,10 +5,12 @@ const subtextEl = document.getElementById("subtext");
 const nameEl = document.getElementById("name-btn");
 const errorEl = document.getElementById("error");
 const submitEl = document.getElementById("submit-btn");
+const playBtn = document.getElementById("play-btn");
 
 //Global variables
 let name;
 let clovers;
+let isMuted = true;
 
 let welcome;
 let stageFlag = "saveName";
@@ -70,3 +72,15 @@ function functionality(type){
     }
     
 }
+
+playBtn.addEventListener("click", event => {
+    const audio = document.querySelector("audio");
+    if(isMuted){
+        audio.volume = 0.2;
+        audio.play();
+        isMuted = false;
+    }else{
+        audio.volume = 0;
+        isMuted = true;
+    }
+})
