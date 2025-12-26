@@ -79,8 +79,10 @@ playBtn.addEventListener("click", event => {
         audio.volume = 0.2;
         audio.play();
         isMuted = false;
+        playBtn.textContent = "🕪"
     }else{
         audio.volume = 0;
         isMuted = true;
+        playBtn.textContent = "🕨"
     }
 })
