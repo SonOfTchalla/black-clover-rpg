@@ -36,7 +36,7 @@ function functionality(type){
         }
         case "cloverCount": {
             clovers = Number(nameEl.value);
-            if(!isNaN(clovers) && clovers >= 3){
+            if(!isNaN(clovers) && clovers >= 3 && clovers <=5){
                 errorEl.textContent = ""
                 switch(clovers){
                     case 3:{
@@ -63,7 +63,7 @@ function functionality(type){
                 showcaseEl.removeChild(nameEl);
                 showcaseEl.removeChild(submitEl);
             }else{
-                errorEl.textContent = "Input numbers only";
+                errorEl.textContent = "Input numbers only in the range 3 to 5.";
             }
             break;
         }
