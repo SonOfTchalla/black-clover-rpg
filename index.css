@@ -34,6 +34,14 @@ body{
     gap: 20px;
 }
 
+#container #showcase #play-btn{
+    width: 50px;
+    background-color:rgba(0, 0, 0, 0);
+    border: none;
+    font-size: 30px;
+    margin-left: auto;
+}
+
 #container #showcase #subtext{
     font-size: 25px;
 }
