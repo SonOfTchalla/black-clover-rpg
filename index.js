@@ -30,14 +30,14 @@ function functionality(type){
                 errorEl.textContent = "";
                 stageFlag = "cloverCount"
             }else{
-                errorEl.textContent = "Please enter a name";
+                errorEl.textContent = "Please enter a valid name";
             }
             break;
         }
         case "cloverCount": {
             clovers = Number(nameEl.value);
-            if(!isNaN(clovers)){
-                //nameEl.remove();
+            if(!isNaN(clovers) && clovers >= 3){
+                errorEl.textContent = ""
                 switch(clovers){
                     case 3:{
                         titleEl.textContent = "Congratulations, " + name;
