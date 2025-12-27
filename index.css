@@ -52,13 +52,32 @@ body{
     font-family:'BlackClover';
 }
 
-#container #showcase #submit-btn{
+.btn{
     border: 0;
-    color: #fff;
-    text-align: center;
     padding: 10px;
     border-radius: 10px;
+}
+
+#container #showcase #submit-btn{
+    color: #fff;
     background-color: #7b7b79;
+}
+
+#container #showcase #choices{
+    display: flex;
+    justify-content: space-between;
+}
+
+#container #showcase #continue-btn{
+    background-color: rgb(86, 155, 86);
+    color: #fff;
+    width: 47%
+}
+
+#container #showcase #back-btn{
+    background-color: rgb(207, 30, 30);
+    color: #fff;
+    width: 47%;
 }
 
 #error{
