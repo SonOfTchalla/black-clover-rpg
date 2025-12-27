@@ -1,3 +1,4 @@
+// Element selectors
 let containerEl = document.getElementById("container");
 let showcaseEl = document.getElementById("showcase");
 const titleEl = document.getElementById("title");
@@ -7,21 +8,20 @@ const errorEl = document.getElementById("error");
 const submitEl = document.getElementById("submit-btn");
 const playBtn = document.getElementById("play-btn");
 
-//Global variables
+//Global variables and flags
 let name;
 let clovers;
 let isMuted = true;
 
-let welcome;
 let stageFlag = "saveName";
 submitEl.addEventListener("click", submit);
 
 function submit(){
-    functionality(stageFlag)
+    renderGame(stageFlag)
 }
 
-function functionality(type){
-    switch(type){
+function renderGame(stage){
+    switch(stage){
         case "saveName": {
             name = nameEl.value;
             if(name != ""){
@@ -61,13 +61,24 @@ function functionality(type){
                         break;
                     }
                 }
-
+                
                 showcaseEl.removeChild(nameEl);
                 showcaseEl.removeChild(submitEl);
+
+                showcaseEl.innerHTML += `
+                <p id="subtext">Would you like to continue?</p>
+                <div id="choices">
+                    <button id="continue-btn" class="btn">Continue</button>
+                    <button id="back-btn" class="btn">Back To Home</button>
+                </div>
+                `
             }else{
                 errorEl.textContent = "Input numbers only in the range 3 to 5.";
             }
             break;
+        }
+        case "":{
+
         }
     }
     
