@@ -42,7 +42,7 @@ body{
     margin-left: auto;
 }
 
-#container #showcase #subtext{
+#container #showcase #subtext, #subtext2{
     font-size: 25px;
 }
 

@@ -12,9 +12,14 @@ const playBtn = document.getElementById("play-btn");
 let name;
 let clovers;
 let isMuted = true;
+let userMana;
 
-let stageFlag = "saveName";
+let stageFlag = "start";
 submitEl.addEventListener("click", submit);
+
+let backBtn;
+let continueBtn;
+let subtext2El
 
 function submit(){
     renderGame(stageFlag)
@@ -22,7 +27,7 @@ function submit(){
 
 function renderGame(stage){
     switch(stage){
-        case "saveName": {
+        case "start": {
             name = nameEl.value;
             if(name != ""){
                 titleEl.textContent = "Welcome to Clover Kingdom, \n" + name;
@@ -65,20 +70,40 @@ function renderGame(stage){
                 showcaseEl.removeChild(nameEl);
                 showcaseEl.removeChild(submitEl);
 
-                showcaseEl.innerHTML += `
-                <p id="subtext">Would you like to continue?</p>
+                showcaseEl.insertAdjacentHTML("beforeend" ,`
+                <p id="subtext2">Would you like to continue?</p>
                 <div id="choices">
                     <button id="continue-btn" class="btn">Continue</button>
                     <button id="back-btn" class="btn">Back To Home</button>
                 </div>
-                `
+                `)
+                stageFlag = "confirm"
+                backBtn = document.querySelector("#back-btn");
+                backBtn.addEventListener("click", ()=>{
+                    reset()
+                });
+                continueBtn = document.querySelector("#continue-btn");
+                continueBtn.addEventListener("click", ()=>{
+                    submit()
+                })
             }else{
                 errorEl.textContent = "Input numbers only in the range 3 to 5.";
             }
             break;
         }
-        case "":{
-
+        case "confirm":{
+            titleEl.textContent = "Wanna know your mana level?"
+            subtext2El = document.querySelector("#subtext2")
+            subtextEl.textContent = "Click below to continue..."
+            stageFlag = "mana"
+            break;
+        }
+        case "mana":{
+           titleEl.textContent = "Your mana level is ";
+           userMana = generateMana()
+           subtextEl.textContent = userMana 
+           subtext2El.textContent = "Would you like to go to the next stage?"
+            break;
         }
     }
     
@@ -97,3 +122,25 @@ playBtn.addEventListener("click", event => {
         playBtn.textContent = "🕨"
     }
 })
+
+function reset(){
+    titleEl.textContent = "Welcome to the Clover Kingdom";
+    subtextEl.textContent = "What is your name?";
+    showcaseEl.replaceChildren()
+    showcaseEl.appendChild(playBtn)
+    showcaseEl.append(titleEl)
+    showcaseEl.append(subtextEl)
+    showcaseEl.appendChild(nameEl)
+    showcaseEl.appendChild(submitEl)
+    nameEl.value = ""
+    stageFlag = "start";
+    console.log(titleEl)
+}
+
+function generateMana(){
+    if(clovers != 5){
+    return Math.floor(Math.random() * 9001);
+    }else{
+        return 0
+    }
+}
