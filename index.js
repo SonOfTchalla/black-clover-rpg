@@ -178,22 +178,18 @@ function renderGame(stage){
                 errorEl.textContent = ""
                 switch(clovers){
                     case 3:{
-                        titleEl.textContent = "Congratulations, " + name;
-                        subtextEl.textContent = "You have Faith, Hope, Love"
-                        containerEl.style.backgroundImage = "url(img/three-leaf-clover.jpg)"
-
+                        populateScreen(stage, "Congratulations, " + name, "You have Faith, Hope, Love", "", "url(img/three-leaf-clover.jpg)");
                         break;
                     }
                     case 4:{
-                        titleEl.textContent = "Congratulations, " + name;
-                        subtextEl.textContent = "You have Faith, Hope, Love and Great Luck!"
-                        containerEl.style.backgroundImage = "url(img/four-leaf-clover.jpg)"
+                        populateScreen(stage, "Congratulations, " + name,
+                        "You have Faith, Hope, Love and Great Luck!", "",
+                        "url(img/four-leaf-clover.jpg)");
                         break;
                     }
                     case 5:{
-                        titleEl.textContent = "Oh no, " + name;
-                        subtextEl.textContent = "The three leaves of the clover represents faith, hope, and love. Within a fourth leaf dwells good luck. Within a fifth leaf... Resides a demon!!!"
-                        containerEl.style.backgroundImage = "url(img/five-leaf-clover.jpg)"
+                        populateScreen(stage, "Oh no, " + name,
+                        "The three leaves of the clover represents faith, hope, and love. Within a fourth leaf dwells good luck. Within a fifth leaf... Resides a demon!!!", "", "url(img/five-leaf-clover.jpg)");
                         break;
                     }
                 }
@@ -224,19 +220,20 @@ function renderGame(stage){
         }
         //Runs if user confirms they want to continue
         case "confirm":{
-            titleEl.textContent = "Wanna know your mana level?"
             subtext2El = document.querySelector("#subtext2")
-            subtextEl.textContent = "Click below to continue..."
+            populateScreen(stageFlag, "Wanna know your mana level?", "", "Click below to continue...", "")
             stageFlag = "mana"
             break;
         }
         //runs when user request to know their mana level
         case "mana":{
            getManaAndType()
-           titleEl.textContent = "Your mana level is \r\n" + userMana;
-           subtextEl.textContent = "Your magic type is \r\n" + userMagicType;
-           subtext2El.textContent = "Would you like to go to the next stage?"
+           populateScreen(stageFlag, "Your mana level is \r\n" + userMana, "Your magic type is \r\n" + userMagicType, "Would you like to go to the next stage?", "")
+           stageFlag = "MagicKnight"
             break;
+        }
+        case "MagicKnight":{
+
         }
     }
     
@@ -280,5 +277,22 @@ function getManaAndType(){
     }else{
         userMana = 0;
         userMagicType = "Unknown.";
+    }
+}
+// Populate the screen text
+function populateScreen(stageFlag, title, subtext, subtext2, containerBG){
+    titleEl.textContent = title;
+    subtextEl.textContent = subtext
+    switch(stageFlag){
+        case "cloverCount":{
+            containerEl.style.backgroundImage = containerBG
+            break;
+        }
+        case "confirm":
+        case "mana":{
+            subtext2El.textContent = subtext2
+            break;
+        }
+       
     }
 }
