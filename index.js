@@ -13,10 +13,137 @@ let name;
 let clovers;
 let isMuted = true;
 let userMana;
+let userMagicType;
 let stageFlag = "start";
 let backBtn;
 let continueBtn;
 let subtext2El;
+const blackCloverMagicTypes = [
+    // 🌿 Natural / Elemental Magic
+    "Fire Magic",
+    "Water Magic",
+    "Wind Magic",
+    "Earth Magic",
+    "Lightning Magic",
+    "Ice Magic",
+    "Snow Magic",
+    "Sand Magic",
+    "Ash Magic",
+    "Smoke Magic",
+    "Mercury Magic",
+    "Steel Magic",
+    "Bronze Magic",
+    "Copper Magic",
+    "Iron Magic",
+    "Crystal Magic",
+    "Glass Magic",
+    "Rock Magic",
+    "Mineral Magic",
+    "Plant Magic",
+    "Tree Magic",
+    "Cotton Magic",
+    "Mushroom Magic",
+  
+    // 🩸 Body / Physical-Based Magic
+    "Blood Magic",
+    "Bone Magic",
+    "Flesh Magic",
+    "Hair Magic",
+    "Skin Magic",
+    "Muscle Magic",
+    "Nail Magic",
+    "Eye Magic",
+    "Tongue Magic",
+  
+    // 🧠 Mental / Sensory Magic
+    "Memory Magic",
+    "Dream Magic",
+    "Illusion Magic",
+    "Hypnosis Magic",
+    "Permeation Magic",
+    "Stealth Magic",
+  
+    // ⏳ Space / Time / Gravity Magic
+    "Spatial Magic",
+    "Time Magic",
+    "Gravity Magic",
+    "Portal Magic",
+    "Warp Magic",
+  
+    // 🧬 Abstract / Conceptual Magic
+    "Curse Magic",
+    "Curse-Warding Magic",
+    "Sealing Magic",
+    "Restriction Magic",
+    "Word Soul Magic",
+    "Contract Magic",
+  
+    // 🧿 Attribute / Status Magic
+    "Anti-Magic",
+    "Trap Magic",
+    "Poison Magic",
+    "Venom Magic",
+    "Decay Magic",
+    "Rot Magic",
+    "Sludge Magic",
+    "Sticky Magic",
+    "Paint Magic",
+    "Paper Magic",
+    "Dice Magic",
+  
+    // 🧙 Support / Utility Magic
+    "Healing Magic",
+    "Creation Magic",
+    "Recombination Magic",
+    "Reinforcement Magic",
+    "Transformation Magic",
+    "Copy Magic",
+    "Imitation Magic",
+    "Thread Magic",
+    "Compass Magic",
+    "Tool Magic",
+  
+    // 🐉 Spirit / Mythical Magic
+    "Spirit Magic",
+    "Fire Spirit Magic",
+    "Wind Spirit Magic",
+    "Water Spirit Magic",
+    "Earth Spirit Magic",
+    "Beast Magic",
+    "Dragon Magic",
+  
+    // 😈 Devil / Forbidden Magic
+    "Devil Magic",
+    "Devil Fire Magic",
+    "Devil Ice Magic",
+    "Devil Gravity Magic",
+    "Devil Time Magic",
+    "Devil Curse Magic",
+    "Supreme Devil Magic",
+  
+    // 👑 Royal / Rare Magic
+    "Star Magic",
+    "Sun Magic",
+    "Moon Magic",
+    "Light Magic",
+    "Dark Magic",
+    "World Tree Magic",
+  
+    // ⚔️ Weapon-Based Magic
+    "Sword Magic",
+    "Blade Magic",
+    "Bow Magic",
+    "Spear Magic",
+    "Chain Magic",
+  
+    // 🧪 Miscellaneous Magic
+    "Sound Magic",
+    "Music Magic",
+    "Food Magic",
+    "Game Magic",
+    "Festival Magic"
+  ];
+  
 
 //Event listeners
 submitEl.addEventListener("click", submit);
@@ -105,9 +232,10 @@ function renderGame(stage){
         }
         //runs when user request to know their mana level
         case "mana":{
-           titleEl.textContent = "Your mana level is ";
            userMana = generateMana()
-           subtextEl.textContent = userMana 
+           userMagicType = getMagicType()
+           titleEl.textContent = "Your mana level is \r\n" + userMana;
+           subtextEl.textContent = "Your magic type is \r\n" + userMagicType;
            subtext2El.textContent = "Would you like to go to the next stage?"
             break;
         }
@@ -152,4 +280,9 @@ function generateMana(){
     }else{
         return 0
     }
+}
+
+//Get magic type
+function getMagicType(){
+    return blackCloverMagicTypes[Math.floor(Math.random() * blackCloverMagicTypes.length)]
 }
