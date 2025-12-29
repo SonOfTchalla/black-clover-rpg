@@ -13,20 +13,23 @@ let name;
 let clovers;
 let isMuted = true;
 let userMana;
-
 let stageFlag = "start";
-submitEl.addEventListener("click", submit);
-
 let backBtn;
 let continueBtn;
-let subtext2El
+let subtext2El;
 
+//Event listeners
+submitEl.addEventListener("click", submit);
+
+//Runs when submit button is clicked
 function submit(){
     renderGame(stageFlag)
 }
 
+//Renders game screen based on stage flag
 function renderGame(stage){
     switch(stage){
+        //runs during stage stage
         case "start": {
             name = nameEl.value;
             if(name != ""){
@@ -41,6 +44,7 @@ function renderGame(stage){
             }
             break;
         }
+        //runs during clover number screen
         case "cloverCount": {
             clovers = Number(nameEl.value);
             if(!isNaN(clovers) && clovers >= 3 && clovers <=5){
@@ -91,6 +95,7 @@ function renderGame(stage){
             }
             break;
         }
+        //Runs if user confirms they want to continue
         case "confirm":{
             titleEl.textContent = "Wanna know your mana level?"
             subtext2El = document.querySelector("#subtext2")
@@ -98,6 +103,7 @@ function renderGame(stage){
             stageFlag = "mana"
             break;
         }
+        //runs when user request to know their mana level
         case "mana":{
            titleEl.textContent = "Your mana level is ";
            userMana = generateMana()
@@ -109,6 +115,7 @@ function renderGame(stage){
     
 }
 
+//play button event listeners
 playBtn.addEventListener("click", event => {
     const audio = document.querySelector("audio");
     if(isMuted){
@@ -123,6 +130,7 @@ playBtn.addEventListener("click", event => {
     }
 })
 
+//Resets to home screen
 function reset(){
     titleEl.textContent = "Welcome to the Clover Kingdom";
     subtextEl.textContent = "What is your name?";
@@ -137,6 +145,7 @@ function reset(){
     console.log(titleEl)
 }
 
+//Generate random mana level
 function generateMana(){
     if(clovers != 5){
     return Math.floor(Math.random() * 9001);
