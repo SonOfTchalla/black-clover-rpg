@@ -232,8 +232,7 @@ function renderGame(stage){
         }
         //runs when user request to know their mana level
         case "mana":{
-           userMana = generateMana()
-           userMagicType = getMagicType()
+           getManaAndType()
            titleEl.textContent = "Your mana level is \r\n" + userMana;
            subtextEl.textContent = "Your magic type is \r\n" + userMagicType;
            subtext2El.textContent = "Would you like to go to the next stage?"
@@ -273,16 +272,13 @@ function reset(){
     console.log(titleEl)
 }
 
-//Generate random mana level
-function generateMana(){
+//Generate mana level and magic type for user
+function getManaAndType(){
     if(clovers != 5){
-    return Math.floor(Math.random() * 9001);
+        userMana = Math.floor(Math.random() * 9001);
+        userMagicType = blackCloverMagicTypes[Math.floor(Math.random() * blackCloverMagicTypes.length)];
     }else{
-        return 0
+        userMana = 0;
+        userMagicType = "Unknown.";
     }
-}
-
-//Get magic type
-function getMagicType(){
-    return blackCloverMagicTypes[Math.floor(Math.random() * blackCloverMagicTypes.length)]
 }
