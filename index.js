@@ -160,6 +160,7 @@ function renderGame(stage){
         case "start": {
             name = nameEl.value;
             if(name != ""){
+                localStorage.setItem("userName", name);
                 titleEl.textContent = "Welcome to Clover Kingdom, \n" + name;
                 subtextEl.textContent = "How many clovers does your grimoire have?";
                 nameEl.value = "";
@@ -176,6 +177,7 @@ function renderGame(stage){
             clovers = Number(nameEl.value);
             if(!isNaN(clovers) && clovers >= 3 && clovers <=5){
                 errorEl.textContent = ""
+                localStorage.setItem("clovers", clovers);
                 switch(clovers){
                     case 3:{
                         populateScreen(stage, "Congratulations, " + name, "You have Faith, Hope, Love", "", "url(img/three-leaf-clover.jpg)");
@@ -228,6 +230,8 @@ function renderGame(stage){
         //runs when user request to know their mana level
         case "mana":{
            getManaAndType()
+           localStorage.setItem("mana",userMana);
+           localStorage.setItem("magic", userMagicType);
            populateScreen(stageFlag, "Your mana level is \r\n" + userMana, "Your magic type is \r\n" + userMagicType, "Would you like to go to the next stage?", "")
            stageFlag = "MagicKnight"
             break;
