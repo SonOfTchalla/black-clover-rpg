@@ -167,7 +167,15 @@ function renderGame(stage){
         case "loggedIn":{
             populateScreen(stage, `Welcome Back, ${name}`, `Mana Level: ${userMana} \n Magic Type: ${userMagicType}`, "", "");
             showcaseEl.removeChild(nameEl)
-
+            showcaseEl.innerHTML += `
+                <button id="logout-btn" class="btn">LOG OUT</button>
+            `
+            const logoutBtn = document.querySelector("#logout-btn");
+            logoutBtn.addEventListener("click", function(){
+                localStorage.clear();
+                stageFlag = "start";
+                reset()
+            })
             break;
         }
         //runs during start stage

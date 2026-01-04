@@ -83,3 +83,8 @@ body{
 #error{
     color: red;
 }
+
+#logout-btn{
+    background-color: red;
+    color: #fff;
+}
