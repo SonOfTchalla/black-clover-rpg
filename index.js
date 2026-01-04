@@ -144,7 +144,15 @@ const blackCloverMagicTypes = [
     "Festival Magic"
   ];
   
+const userExists = localStorage.getItem("userName");
 
+if(userExists){
+    name = userExists;
+    clovers = localStorage.getItem("clovers");
+    userMagicType = localStorage.getItem("magic");
+    userMana = localStorage.getItem("mana");
+    renderGame("loggedIn")
+}
 //Event listeners
 submitEl.addEventListener("click", submit);
 
@@ -156,7 +164,13 @@ function submit(){
 //Renders game screen based on stage flag
 function renderGame(stage){
     switch(stage){
-        //runs during stage stage
+        case "loggedIn":{
+            populateScreen(stage, `Welcome Back, ${name}`, `Mana Level: ${userMana} \n Magic Type: ${userMagicType}`, "", "");
+            showcaseEl.removeChild(nameEl)
+
+            break;
+        }
+        //runs during start stage
         case "start": {
             name = nameEl.value;
             if(name != ""){
