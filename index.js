@@ -259,7 +259,7 @@ function renderGame(stage){
             break;
         }
         case "MagicKnight":{
-
+            populateScreen(stageFlag, "The Magic Knight Entrance Exam", `The Magic Knights Entrance Exam is a kingdom-wide event where aspiring mages, such as yourself, ${name}, compete to join one of the nine Magic Knight Squads, showcasing their unique magic and abilities through various trials, to impress the Magic Knight Captains who personally select new recruits.`, "Would you like to proceed?", "url('img/Magic_Knights_entrance_exam_venue.webp')")
         }
     }
     
@@ -316,6 +316,11 @@ function populateScreen(stageFlag, title, subtext, subtext2, containerBG){
         }
         case "confirm":
         case "mana":{
+            subtext2El.textContent = subtext2
+            break;
+        }
+        case "MagicKnight":{
+            containerEl.style.backgroundImage = containerBG
             subtext2El.textContent = subtext2
             break;
         }
