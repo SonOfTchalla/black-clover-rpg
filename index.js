@@ -1,3 +1,14 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+import { getDatabase, ref, push, onValue, remove } from "https:////www.gstatic.com/firebasejs/10.8.1/firebase-database.js"
+
+const firebaseConfig = {
+    databaseURL: "https://black-clover-rpg-f2ceb-default-rtdb.europe-west1.firebasedatabase.app",
+}
+
+const app = initializeApp(firebaseConfig)
+const database = getDatabase(app)
+const referenceInDB = ref(database, "userStats")
+
 // Element selectors
 let containerEl = document.getElementById("container");
 let showcaseEl = document.getElementById("showcase");
