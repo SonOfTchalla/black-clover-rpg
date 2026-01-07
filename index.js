@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
-import { getDatabase, ref, push, onValue, remove } from "https:////www.gstatic.com/firebasejs/10.8.1/firebase-database.js"
+import { getDatabase, ref, push, onValue, remove } from "https:////www.gstatic.com/firebasejs/12.7.0/firebase-database.js"
 
 const firebaseConfig = {
     databaseURL: "https://black-clover-rpg-f2ceb-default-rtdb.europe-west1.firebasedatabase.app",
@@ -194,6 +194,7 @@ function renderGame(stage){
             name = nameEl.value;
             if(name != ""){
                 localStorage.setItem("userName", name);
+                push(referenceInDB, name)
                 titleEl.textContent = "Welcome to Clover Kingdom, \n" + name;
                 subtextEl.textContent = "How many clovers does your grimoire have?";
                 nameEl.value = "";
@@ -211,6 +212,7 @@ function renderGame(stage){
             if(!isNaN(clovers) && clovers >= 3 && clovers <=5){
                 errorEl.textContent = ""
                 localStorage.setItem("clovers", clovers);
+                push(referenceInDB, clovers)
                 switch(clovers){
                     case 3:{
                         populateScreen(stage, "Congratulations, " + name, "You have Faith, Hope, Love", "", "url(img/three-leaf-clover.jpg)");
@@ -265,6 +267,8 @@ function renderGame(stage){
            getManaAndType()
            localStorage.setItem("mana",userMana);
            localStorage.setItem("magic", userMagicType);
+           push(referenceInDB, userMana)
+           push(referenceInDB, userMagicType)
            populateScreen(stageFlag, "Your mana level is \r\n" + userMana, "Your magic type is \r\n" + userMagicType, "Would you like to go to the next stage?", "")
            stageFlag = "MagicKnight"
             break;
